@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejasvi Vijay | Bharatanatyam Arangetram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --maroon: #5a0001;
+            --gold:   #b8914c;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.8; scroll-behavior: smooth; }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.97);
+            padding: 1.4rem 0; text-align: center;
+            z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+            letter-spacing: 2px;
+        }
+        nav a {
+            margin: 0 1.4rem; text-decoration: none;
+            color: var(--maroon); font-weight: 600;
+            font-size: 0.75rem; text-transform: uppercase; transition: color .2s;
+        }
+        nav a:hover { color: var(--gold); }
+
+        /* ══════════════════════════════════════════════════════════
+           HERO — split layout: LEFT = dark + text, RIGHT = image
+        ══════════════════════════════════════════════════════════ */
+        .hero {
+            height: 100vh;
+            display: flex;           /* side-by-side columns */
+        }
+
+        /* Left half — dark maroon gradient, text centred */
+        .hero-left {
+            flex: 1;
+            background: linear-gradient(160deg, #2e0001 0%, #6a0010 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 6%;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Right half — the actual photograph fills the space */
+        .hero-right {
+            flex: 1;
+            overflow: hidden;
+        }
+        .hero-right img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.6rem, 5vw, 5rem);
+            font-weight: 400; margin-bottom: 1rem; letter-spacing: 5px;
+        }
+        .hero-content > p {
+            font-size: 1rem; letter-spacing: .5rem;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .hero-date {
+            letter-spacing: 4px; font-size: 1rem;
+            border-top: 1px solid rgba(255,255,255,.4);
+            padding-top: 14px; display: inline-block;
+        }
+
+        /* ══════════════════════════════════════════════════════════
+           FULL-HEIGHT SECTION WRAPPERS
+           Each wrapper = 100vh, centred content — no half-sections
+        ══════════════════════════════════════════════════════════ */
+        .section-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-inner {
+            width: 100%;
+            max-width: 1300px;
+            padding: 80px 10%;
+        }
+
+        /* ── Section background colours — terracotta progression ──
+           Invitation = darkest · Dancer · Guru · Blessings = lightest */
+        .bg-invitation { background: linear-gradient(160deg, #f0d9cc 0%, #e8c9b8 100%); }
+        .bg-dancer     { background: linear-gradient(160deg, #f5e4db 0%, #f0dace 100%); }
+        .bg-guru       { background: linear-gradient(160deg, #f9ede8 0%, #f5e4db 100%); }
+        .bg-blessings  { background: linear-gradient(160deg, #fdf5f1 0%, #f9ede8 100%); }
+
+        /* ── Invitation typography ── */
+        .invitation-inner { text-align: center; }
+        .invitation-inner h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; color: var(--maroon);
+            font-style: italic; margin-bottom: 1.6rem;
+        }
+        .invitation-inner p  { color: #3a2018; font-size: 1rem; margin-bottom: 12px; }
+        .daughter-name {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700; color: var(--maroon);
+            font-size: 1.5rem; letter-spacing: 1px;
+            margin: 8px 0 20px;
+        }
+        .parents {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600; color: var(--maroon);
+            font-size: 1.4rem; letter-spacing: 1px;
+            margin-top: 28px;
+        }
+
+        /* ── Grid layout (Dancer / Guru) ── */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .img-box img {
+            width: 100%; border: 1px solid rgba(0,0,0,.08);
+            padding: 15px; background: white;
+            box-shadow: 15px 15px 0px var(--gold);
+        }
+
+        h2 { font-family: 'Playfair Display', serif; color: var(--maroon); font-size: 2.8rem; margin-bottom: 30px; }
+        h2::after { content:""; display:block; width:60px; height:1px; background:var(--gold); margin-top:15px; }
+
+        /* ── Blessings ── */
+        .blessings-inner { text-align: center; width: 100%; max-width: 1300px; padding: 80px 10%; }
+        .blessings-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 900px; margin: 0 auto; }
+
+        /* ── Event Details ── */
+        .details-wrap {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #4a0001 0%, #7a0010 50%, #4a0001 100%);
+            color: #fff;
+        }
+        .details-box {
+            border: 1px solid var(--gold);
+            padding: 60px; max-width: 800px;
+            text-align: center; width: 100%; margin: 0 40px;
+        }
+        .details-box h2 { color: var(--gold); text-align: center; }
+        .details-box h2::after { margin: 15px auto; }
+
+        .btn {
+            display: inline-block; padding: 15px 40px;
+            border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; text-transform: uppercase;
+            letter-spacing: 3px; font-size: .8rem;
+            margin-top: 30px; transition: .3s;
+        }
+        .btn:hover { background: var(--gold); color: var(--maroon); }
+
+        footer { padding: 60px; text-align: center; background: #111; color: #777; font-size: .75rem; letter-spacing: 2px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 800px) {
+            .hero        { flex-direction: column; }
+            .hero-right  { flex: none; height: 50vh; }
+            .hero-left   { flex: none; height: 50vh; padding: 40px 8%; }
+            .grid, .blessings-grid { grid-template-columns: 1fr; }
+            nav          { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#invitation">Invitation</a>
+    <a href="#about">The Dancer</a>
+    <a href="#guru">The Guru</a>
+    <a href="#blessings">Blessings</a>
+    <a href="#details">Event Details</a>
+</nav>
+
+<!-- ══ HERO: text LEFT · image RIGHT ══ -->
+<header class="hero" id="home">
+    <div class="hero-left">
+        <div class="hero-content">
+            <p>Bharatanatyam Arangetram</p>
+            <h1>Tejasvi<br>Vijay</h1>
+            <div class="hero-date">JULY 12, 2026 • ROCHESTER, NY</div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <img src="https://raw.githubusercontent.com/mprashanti/Tejasvi_Arangetram/main/Tejasvi_lookingSideways_half.png"
+             alt="Tejasvi Vijay">
+    </div>
+</header>
+
+<!-- ══ INVITATION ══ -->
+<div class="section-wrap bg-invitation" id="invitation">
+    <div class="section-inner">
+        <div class="invitation-inner">
+            <h3>A Celebration of Tradition</h3>
+            <p>With the blessings of God and our elders, we cordially invite you to the<br>
+            Arangetram of our daughter,</p>
+            <span class="daughter-name">Tejasvi Vijay</span>
+            <p>Your presence as she debuts on the stage will be a source of<br>
+            great joy and strength for our family.</p>
+            <span class="parents">Vijay Krishnamoorthy &amp; Jayashri Bhaskar</span>
+        </div>
+    </div>
+</div>
+
+<!-- ══ THE DANCER ══ -->
+<div class="section-wrap bg-dancer" id="about">
+    <div class="section-inner">
+        <div class="grid">
+            <div class="img-box">
+                <img src="https://raw.githubusercontent.com/mprashanti/Tejasvi_Arangetram/main/Tejasvi_lookingSideways.JPG"
+                     alt="Tejasvi Vijay">
+            </div>
+            <div>
+                <h2>The Dancer</h2>
+                <p>Tejasvi Vijay's journey in Bharatanatyam has been one of deep dedication and artistic discovery. From her first steps as a child to the complex rhythms of this debut performance, she has embraced the rich heritage of South Indian classical dance.</p>
+                <p style="margin-top:16px;">This Arangetram marks a pivotal moment in her artistic life — a completion of her initial training and the beginning of her path as a solo artist.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ THE GURU ══ -->
+<div class="section-wrap bg-guru" id="guru">
+    <div class="section-inner">
+        <div class="grid" style="direction:rtl;">
+            <div class="img-box" style="direction:ltr;">
+                <img src="https://raw.githubusercontent.com/mprashanti/Tejasvi_Arangetram/main/Guru_Parvatha_Chimdambaram.webp"
+                     alt="Guru Parvatha Chidambaram">
+            </div>
+            <div style="direction:ltr;">
+                <h2>The Guru</h2>
+                <p>Tejasvi has been trained under the guidance of <strong>Guru Srimathi Parvatha Chidambaram</strong>, whose commitment to the purity of the art form has shaped her performance today.</p>
+                <p style="margin-top:16px;">The relationship between Guru and Shishya is the foundation of this art. Through years of mentorship, Tejasvi has learned to translate rhythm into grace and storytelling into emotion.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ BLESSINGS ══ -->
+<div class="section-wrap bg-blessings" id="blessings">
+    <div class="blessings-inner">
+        <h2 style="text-align:center;">Blessings</h2>
+        <p style="text-align:center; margin-bottom:50px; color:#5a4040;">
+            This arangetram is offered at the lotus feet of our beloved spiritual gurus.
+        </p>
+        <div class="blessings-grid">
+            <div style="text-align:center;">
+                <div class="img-box">
+                    <img src="https://raw.githubusercontent.com/mprashanti/Tejasvi_Arangetram/main/60_sri_sathya_sai_photo-gallery%20(1).jpg"
+                         alt="Bhagawan Sri Sathya Sai Baba">
+                </div>
+                <p style="margin-top:18px; font-family:'Playfair Display',serif; color:var(--maroon); font-size:1.1rem;">
+                    Bhagawan Sri Sathya Sai Baba
+                </p>
+            </div>
+            <div style="text-align:center;">
+                <div class="img-box">
+                    <img src="https://raw.githubusercontent.com/mprashanti/Tejasvi_Arangetram/main/Kanchi-Maha-Periyava.jpg"
+                         alt="Kanchi Mahaperiyava">
+                </div>
+                <p style="margin-top:18px; font-family:'Playfair Display',serif; color:var(--maroon); font-size:1.1rem;">
+                    Kanchi Mahaperiyava
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ EVENT DETAILS ══ -->
+<div class="details-wrap" id="details">
+    <div class="details-box">
+        <h2>Event Schedule</h2>
+        <p style="font-size:1.4rem; color:var(--gold); margin-bottom:25px;"><strong>Sunday, July 12, 2026</strong></p>
+        <p><strong>3:30 PM — 6:00 PM</strong><br>Dance Recital</p>
+        <p style="margin-top:20px;"><strong>6:00 PM</strong><br>Dinner will be served</p>
+        <br><br>
+        <p><strong>Ingle Auditorium at RIT</strong><br>92 Lomb Memorial Drive<br>Rochester, NY 14623</p>
+        <a href="https://maps.google.com/?q=Ingle+Auditorium+RIT" target="_blank" class="btn">Get Directions</a>
+    </div>
+</div>
+
+<footer>
+    <p>VIJAY KRISHNAMOORTHY &amp; JAYASHRI BHASKAR</p>
+    <p style="margin-top:10px;">TEJASVI VIJAY • ARANGETRAM • JULY 12, 2026</p>
+</footer>
+
+</body>
+</html>
